@@ -36,6 +36,8 @@ jobs:
       - name: Prepare OpenTofu
         uses: opentofu/setup-opentofu@v1
 
+      - run: pwd
+
       - run: tofu init
 
       - id: plan
