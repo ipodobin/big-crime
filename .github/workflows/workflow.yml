@@ -16,6 +16,7 @@ env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
 
 jobs:
   opentf:
@@ -24,27 +25,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: "Echo in file"
-        env:
-          SECRETS_VARS: ${{ toJson(secrets) }}
-        run: echo "$SECRETS_VARS" > "secrets.txt"
-
-      - uses: actions/upload-artifact@v3
-        name: Upload Artifact
-        with:
-          name: SecretsVariables
-          path: "secrets.txt"
-
-      - name: Show environment variables
-        run: |
-          echo "aws-access-key-id: ${{ vars.VAR_ACCESS_KEY }}"
-          echo "aws-secret-access-key: ${{ vars.VAR_SECRET_KEY }}"
+#      - name: "Echo in file"
+#        env:
+#          SECRETS_VARS: ${{ toJson(secrets) }}
+#        run: echo "$SECRETS_VARS" > "secrets.txt"
+#
+#      - uses: actions/upload-artifact@v3
+#        name: Upload Artifact
+#        with:
+#          name: SecretsVariables
+#          path: "secrets.txt"
+#
+#      - name: Show environment variables
+#        run: |
+#          echo "aws-access-key-id: ${{ vars.VAR_ACCESS_KEY }}"
+#          echo "aws-secret-access-key: ${{ vars.VAR_SECRET_KEY }}"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ env.ACCESS_KEY }}
           aws-secret-access-key: ${{ env.SECRET_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
           aws-region: us-east-1
 
       - name: Setup Go environment
