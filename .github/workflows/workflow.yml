@@ -44,7 +44,7 @@ jobs:
       - name: OpenTofu Init
         id: init
         working-directory: ./infrastructure
-        run: tofu init
+        run: tofu init -input=false
 
       - name: OpenTofu Validate
         id: validate
@@ -54,42 +54,11 @@ jobs:
       - name: OpenTofu Plan
         id: plan
         working-directory: ./infrastructure
-        run: tofu plan -no-color -out big_crime_plan
+        run: tofu plan -no-color -input=false -compact-warnings -out=big_crime_plan.file
         continue-on-error: true
 
       - name: OpenTofu Apply
         id: apply
         working-directory: ./infrastructure
-        run: tofu apply -no-color big_crime_plan
+        run: tofu apply -no-color -input=false -compact-warnings big_crime_plan.file
         continue-on-error: true
-
-#      - run: echo ${{ steps.plan.outputs.stdout }}
-#      - run: echo ${{ steps.plan.outputs.stderr }}
-#      - run: echo ${{ steps.plan.outputs.exitcode }}
-
-#      - name: Download the tofu source
-#        uses: actions/checkout@v4
-#        with:
-#          repository: opentofu/opentofu
-#          path: opentofu
-#
-#      - name: Install tofu tooling
-#        uses: actions/setup-go@v4
-#        with:
-#          go-version-file: opentofu/go.mod
-#          cache-dependency-path: opentofu/go.sum
-#
-#      - name: Prepare the tofu command
-#        working-directory: opentofu
-#        run: |
-#          go build -ldflags "-w -s -X 'github.com/opentofu/opentofu/version.dev=no'" -o bin/tofu .
-#          echo $(pwd)/bin >> $GITHUB_PATH
-#
-#      - name: Initialize opentf
-#        run: opentf init -lock=false
-#
-#      - name: Validate opentf
-#        run: opentf validate
-#
-#      - name: Plan opentf
-#        run: opentf plan -var-file="./dev.tfvars" -var "access_key=${ACCESS_KEY}" -var "secret_key=${SECRET_KEY}" -lock=false
