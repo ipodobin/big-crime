@@ -43,10 +43,12 @@ jobs:
 
       - name: OpenTofu Init
         id: init
+        working-directory: ./infrastructure
         run: tofu init
 
       - name: OpenTofu Validate
         id: validate
+        working-directory: ./infrastructure
         run: tofu validate -no-color
 
       - name: OpenTofu Plan
