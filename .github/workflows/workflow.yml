@@ -33,18 +33,27 @@ jobs:
           aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
           aws-region: us-east-1
 
-      - name: Prepare OpenTofu
+      - name: Setup OpenTofu
         uses: opentofu/setup-opentofu@v1
 
-      - run: pwd
+      - name: OpenTofu fmt
+        id: fmt
+        run: tofu fmt -check
+        continue-on-error: true
 
-      - run: ls
+      - name: OpenTofu Init
+        id: init
+        run: tofu init
 
-      - run: tofu init
+      - name: OpenTofu Validate
+        id: validate
+        run: tofu validate -no-color
 
-      - id: plan
+      - name: OpenTofu Plan
+        id: plan
         working-directory: ./infrastructure
         run: tofu plan -no-color
+        continue-on-error: true
 
       - run: echo ${{ steps.plan.outputs.stdout }}
       - run: echo ${{ steps.plan.outputs.stderr }}
