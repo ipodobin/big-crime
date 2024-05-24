@@ -38,6 +38,8 @@ jobs:
 
       - run: pwd
 
+      - run: ls
+
       - run: tofu init
 
       - id: plan
