@@ -25,22 +25,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-#      - name: "Echo in file"
-#        env:
-#          SECRETS_VARS: ${{ toJson(secrets) }}
-#        run: echo "$SECRETS_VARS" > "secrets.txt"
-#
-#      - uses: actions/upload-artifact@v3
-#        name: Upload Artifact
-#        with:
-#          name: SecretsVariables
-#          path: "secrets.txt"
-#
-#      - name: Show environment variables
-#        run: |
-#          echo "aws-access-key-id: ${{ vars.VAR_ACCESS_KEY }}"
-#          echo "aws-secret-access-key: ${{ vars.VAR_SECRET_KEY }}"
-
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -49,18 +33,23 @@ jobs:
           aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
           aws-region: us-east-1
 
-      - name: Setup Go environment
-        uses: actions/setup-go@v2
+      - name: Download the tofu source
+        uses: actions/checkout@v4
         with:
-          go-version: '1.20.3'
+          repository: opentofu/opentofu
+          path: opentofu
 
-      - name: Build opentf from source
+      - name: Install tofu tooling
+        uses: actions/setup-go@v4
+        with:
+          go-version-file: opentofu/go.mod
+          cache-dependency-path: opentofu/go.sum
+
+      - name: Prepare the tofu command
+        working-directory: opentofu
         run: |
-          git clone https://github.com/opentffoundation/opentf.git
-          cd opentf
-          go build -o $GITHUB_WORKSPACE/opentf-bin
-      - name: Symlink opentf
-        run: sudo ln -s $GITHUB_WORKSPACE/opentf-bin /usr/local/bin/opentf
+          go build -ldflags "-w -s -X 'github.com/opentofu/opentofu/version.dev=no'" -o bin/tofu .
+          echo $(pwd)/bin >> $GITHUB_PATH
 
       - name: Initialize opentf
         run: opentf init -lock=false
