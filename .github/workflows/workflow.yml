@@ -54,12 +54,18 @@ jobs:
       - name: OpenTofu Plan
         id: plan
         working-directory: ./infrastructure
-        run: tofu plan -no-color
+        run: tofu plan -no-color -out big_crime_plan
         continue-on-error: true
 
-      - run: echo ${{ steps.plan.outputs.stdout }}
-      - run: echo ${{ steps.plan.outputs.stderr }}
-      - run: echo ${{ steps.plan.outputs.exitcode }}
+      - name: OpenTofu Plan
+        id: plan
+        working-directory: ./infrastructure
+        run: tofu apply -no-color big_crime_plan
+        continue-on-error: true
+
+#      - run: echo ${{ steps.plan.outputs.stdout }}
+#      - run: echo ${{ steps.plan.outputs.stderr }}
+#      - run: echo ${{ steps.plan.outputs.exitcode }}
 
 #      - name: Download the tofu source
 #        uses: actions/checkout@v4
