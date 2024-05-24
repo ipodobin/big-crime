@@ -1,0 +1,54 @@
+name: Opentf CI
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: sh -eux {0}
+
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
+jobs:
+  opentf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ env.ACCESS_KEY }}
+          aws-secret-access-key: ${{ env.SECRET_KEY }}
+          aws-region: us-east-2
+
+      - name: Setup Go environment
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.20.3'
+
+      - name: Build opentf from source
+        run: |
+          git clone https://github.com/opentffoundation/opentf.git
+          cd opentf
+          go build -o $GITHUB_WORKSPACE/opentf-bin
+      - name: Symlink opentf
+        run: sudo ln -s $GITHUB_WORKSPACE/opentf-bin /usr/local/bin/opentf
+
+      - name: Initialize opentf
+        run: opentf init -lock=false
+
+      - name: Validate opentf
+        run: opentf validate
+
+      - name: Plan opentf
+        run: opentf plan -var-file="./dev.tfvars" -var "access_key=${ACCESS_KEY}" -var "secret_key=${SECRET_KEY}" -lock=false
