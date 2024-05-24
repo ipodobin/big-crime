@@ -26,8 +26,8 @@ jobs:
 
       - name: Show environment variables
         run: |
-          echo "aws-access-key-id: $VAR_ACCESS_KEY"
-          echo "aws-secret-access-key: $VAR_SECRET_KEY"
+          echo "aws-access-key-id: ${{ env.VAR_ACCESS_KEY }}"
+          echo "aws-secret-access-key: ${{ env.VAR_SECRET_KEY }}
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
