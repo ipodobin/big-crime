@@ -19,7 +19,7 @@ env:
   AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
 
 jobs:
-  opentf_plan:
+  plan:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -55,8 +55,8 @@ jobs:
         id: plan
         working-directory: ./infrastructure
         run: tofu plan -no-color -input=false -compact-warnings -out=big_crime_plan.file
-  opentf_apply:
-    needs: opentf_plan
+  apply:
+    needs: plan
     runs-on: ubuntu-latest
     environment: final
     steps:
@@ -98,3 +98,84 @@ jobs:
         id: apply
         working-directory: ./infrastructure
         run: tofu apply -no-color -input=false -compact-warnings big_crime_plan.file
+
+  plan_destroy:
+    runs-on: ubuntu-latest
+    environment: final
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.ACCESS_KEY }}
+          aws-secret-access-key: ${{ env.SECRET_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          aws-region: us-east-1
+
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
+
+      - name: OpenTofu fmt
+        id: fmt
+        run: tofu fmt -check
+        continue-on-error: true
+
+      - name: OpenTofu Init
+        id: init
+        working-directory: ./infrastructure
+        run: tofu init -input=false
+
+      - name: OpenTofu Validate
+        id: validate
+        working-directory: ./infrastructure
+        run: tofu validate -no-color
+
+      - name: OpenTofu Plan
+        id: plan
+        working-directory: ./infrastructure
+        run: tofu plan -destroy -no-color -input=false -compact-warnings -out=big_crime_plan.file
+  destroy:
+    needs: plan_destroy
+    runs-on: ubuntu-latest
+    environment: final
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.ACCESS_KEY }}
+          aws-secret-access-key: ${{ env.SECRET_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          aws-region: us-east-1
+
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
+
+      - name: OpenTofu fmt
+        id: fmt
+        run: tofu fmt -check
+        continue-on-error: true
+
+      - name: OpenTofu Init
+        id: init
+        working-directory: ./infrastructure
+        run: tofu init -input=false
+
+      - name: OpenTofu Validate
+        id: validate
+        working-directory: ./infrastructure
+        run: tofu validate -no-color
+
+      - name: OpenTofu Plan
+        id: plan
+        working-directory: ./infrastructure
+        run: tofu plan -no-color -input=false -compact-warnings -out=big_crime_plan.file
+
+      - name: OpenTofu Apply
+        id: apply
+        working-directory: ./infrastructure
+        run: tofu destroy -no-color -input=false -compact-warnings big_crime_plan.file
