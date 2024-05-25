@@ -72,12 +72,7 @@ jobs:
         with:
           name: plan_file
 
-      - run: pwd
-
-      - run: ls -la
-
       - name: OpenTofu Apply
         id: apply
-        working-directory: ./infrastructure
         run: tofu apply -no-color -input=false -compact-warnings big_crime_plan.file
         continue-on-error: true
