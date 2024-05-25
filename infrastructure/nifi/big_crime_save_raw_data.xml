@@ -1683,7 +1683,7 @@
                     </entry>
                     <entry>
                         <key>Bucket</key>
-                        <value>big-crime-data</value>
+                        <value>big-crime-landing-zone</value>
                     </entry>
                     <entry>
                         <key>Content Type</key>
@@ -2976,5 +2976,5 @@
             <type>org.apache.nifi.processors.standard.RouteOnAttribute</type>
         </processors>
     </snippet>
-    <timestamp>05/25/2024 09:20:07 UTC</timestamp>
+    <timestamp>05/25/2024 14:17:53 UTC</timestamp>
 </template>
