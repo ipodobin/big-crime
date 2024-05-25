@@ -60,8 +60,8 @@ jobs:
       - name: Archive open tofu init artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: infrastructure_directory
-          path: ./infrastructure
+          name: plan_file
+          path: ./infrastructure/big_crime_plan.file
   opentf_apply:
     needs: opentf_plan
     runs-on: ubuntu-latest
@@ -70,7 +70,12 @@ jobs:
       - name: Download open tofu init artifact
         uses: actions/download-artifact@v4
         with:
-          name: infrastructure_directory
+          name: plan_file
+
+      - run: pwd
+
+      - run: ls -la
+
       - name: OpenTofu Apply
         id: apply
         working-directory: ./infrastructure
