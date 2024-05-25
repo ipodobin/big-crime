@@ -60,6 +60,7 @@ jobs:
     needs: opentf_plan
     runs-on: ubuntu-latest
     environment: final
+    steps:
       - name: OpenTofu Apply
         id: apply
         working-directory: ./infrastructure
