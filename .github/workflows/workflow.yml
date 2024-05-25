@@ -85,7 +85,6 @@ jobs:
 
       - name: OpenTofu Init
         id: init
-        working-directory: ./infrastructure
         run: tofu init -input=false
 
       - name: OpenTofu Apply
