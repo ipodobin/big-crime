@@ -61,7 +61,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: infrastructure
-          path: ./infrastructure/big_crime_plan.file
+          path: ./infrastructure/*
   opentf_apply:
     needs: opentf_plan
     runs-on: ubuntu-latest
