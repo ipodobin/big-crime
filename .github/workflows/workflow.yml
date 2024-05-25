@@ -62,6 +62,11 @@ jobs:
         with:
           name: infrastructure_directory
           path: ./infrastructure/*
+
+      - working-directory: ./infrastructure
+        run: pwd
+      - working-directory: ./infrastructure
+        run: ls -la
   opentf_apply:
     needs: opentf_plan
     runs-on: ubuntu-latest
