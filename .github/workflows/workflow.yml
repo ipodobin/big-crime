@@ -55,22 +55,13 @@ jobs:
         id: plan
         working-directory: ./infrastructure
         run: tofu plan -no-color -input=false -compact-warnings -out=big_crime_plan.file
-        continue-on-error: true
-
-      - name: Archive open tofu artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: infrastructure
-          path: ./infrastructure/*
   opentf_apply:
     needs: opentf_plan
     runs-on: ubuntu-latest
     environment: final
     steps:
-      - name: Download open tofu artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: infrastructure
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -83,11 +74,26 @@ jobs:
       - name: Setup OpenTofu
         uses: opentofu/setup-opentofu@v1
 
+      - name: OpenTofu fmt
+        id: fmt
+        run: tofu fmt -check
+        continue-on-error: true
+
       - name: OpenTofu Init
         id: init
+        working-directory: ./infrastructure
         run: tofu init -input=false
+
+      - name: OpenTofu Validate
+        id: validate
+        working-directory: ./infrastructure
+        run: tofu validate -no-color
+
+      - name: OpenTofu Plan
+        id: plan
+        working-directory: ./infrastructure
+        run: tofu plan -no-color -input=false -compact-warnings -out=big_crime_plan.file
 
       - name: OpenTofu Apply
         id: apply
         run: tofu apply -no-color -input=false -compact-warnings big_crime_plan.file
-        continue-on-error: true
