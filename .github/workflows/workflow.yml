@@ -170,12 +170,7 @@ jobs:
         working-directory: ./infrastructure
         run: tofu validate -no-color
 
-      - name: OpenTofu Plan
-        id: plan
-        working-directory: ./infrastructure
-        run: tofu plan -no-color -input=false -compact-warnings -out=big_crime_plan.file
-
       - name: OpenTofu Apply
         id: apply
         working-directory: ./infrastructure
-        run: tofu destroy -no-color -input=false -compact-warnings big_crime_plan.file
+        run: tofu destroy -no-color -input=false -compact-warnings
