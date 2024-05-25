@@ -101,7 +101,7 @@ jobs:
 
   plan_destroy:
     runs-on: ubuntu-latest
-    environment: final
+    environment: plan_destroy
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -139,7 +139,7 @@ jobs:
   destroy:
     needs: plan_destroy
     runs-on: ubuntu-latest
-    environment: final
+    environment: destroy
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
