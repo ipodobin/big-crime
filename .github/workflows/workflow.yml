@@ -72,6 +72,17 @@ jobs:
         with:
           name: plan_file
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ env.ACCESS_KEY }}
+          aws-secret-access-key: ${{ env.SECRET_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          aws-region: us-east-1
+
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
+
       - name: OpenTofu Apply
         id: apply
         run: tofu apply -no-color -input=false -compact-warnings big_crime_plan.file
