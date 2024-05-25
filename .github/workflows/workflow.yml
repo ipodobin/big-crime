@@ -96,4 +96,5 @@ jobs:
 
       - name: OpenTofu Apply
         id: apply
+        working-directory: ./infrastructure
         run: tofu apply -no-color -input=false -compact-warnings big_crime_plan.file
