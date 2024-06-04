@@ -30,7 +30,7 @@ resource "aws_kinesis_analytics_application" "test_application" {
 
     kinesis_stream {
       resource_arn = aws_kinesis_stream.big_crime_stream.arn
-      role_arn     = "LabRole"
+      role_arn     = "arn:aws:iam::780087431924:role/LabRole"
     }
 
     parallelism {
