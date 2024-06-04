@@ -17,6 +17,8 @@ resource "aws_s3_bucket" "big_crime_landing_zone_bucket" {
     Name        = "BigCrimeDataBucket"
     Environment = "dev"
   }
+
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_public_access_block" "big_crime_landing_zone_bucket_public_access" {
@@ -55,6 +57,8 @@ resource "aws_s3_bucket" "big_crime_formatted_data_bucket" {
     Name        = "BigCrimeDataBucket"
     Environment = "dev"
   }
+
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_public_access_block" "big_crime_formatted_data_bucket_public_access" {
