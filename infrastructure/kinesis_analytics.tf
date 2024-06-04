@@ -1,8 +1,8 @@
 
 resource "aws_kinesis_stream" "big_crime_stream" {
   name             = "big-crime-stream"
-  shard_count      = 1
-  retention_period = 48
+#   shard_count      = 1
+  retention_period = 24
 
   shard_level_metrics = [
     "IncomingBytes",
@@ -10,7 +10,7 @@ resource "aws_kinesis_stream" "big_crime_stream" {
   ]
 
   stream_mode_details {
-    stream_mode = "PROVISIONED"
+    stream_mode = "ON_DEMAND"
   }
 
   tags = {
