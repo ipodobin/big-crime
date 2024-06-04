@@ -9,7 +9,7 @@ env:
   TF_CLOUD_ORGANIZATION: "ipodobin"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "big-crime"
-  CONFIG_DIRECTORY: "./"
+  CONFIG_DIRECTORY: "./infrastructure"
 
 jobs:
   terraform:

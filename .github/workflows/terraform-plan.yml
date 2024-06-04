@@ -2,12 +2,15 @@ name: "Terraform Plan"
 
 on:
   pull_request:
+  push:
+    branches:
+      - main
 
 env:
   TF_CLOUD_ORGANIZATION: "ipodobin"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "big-crime"
-  CONFIG_DIRECTORY: "./"
+  CONFIG_DIRECTORY: "./infrastructure"
 
 jobs:
   terraform:
