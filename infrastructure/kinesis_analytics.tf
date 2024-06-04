@@ -29,7 +29,7 @@ resource "aws_kinesisanalyticsv2_application" "big_crime_flink" {
   service_execution_role = "arn:aws:iam::780087431924:role/LabRole"
   application_mode       = "INTERACTIVE"
   application_configuration {
-    flink_application_configuration {
+    zeppelin_application_configuration {
       catalog_configuration {
         glue_data_catalog_configuration {
           database_arn   = aws_glue_catalog_database.big_crime_catalog.arn
