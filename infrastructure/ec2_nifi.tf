@@ -21,7 +21,7 @@ data "aws_ami" "amazon_linux" {
 
   filter {
     name   = "name"
-    values = ["amazon/al2023-ami-2023.4.2024*-kernel-6.1-x86_64"]
+    values = ["amazon/al2023-ami-*-x86_64"]
   }
 
   owners = ["amazon"]
