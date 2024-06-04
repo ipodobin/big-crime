@@ -36,12 +36,14 @@ resource "aws_instance" "web" {
               sudo systemctl enable docker.service
               sudo systemctl start docker.service
               docker run --name nifi \
-                -p 8080:8443 \
+                -p 8080:8080 \
                 -d \
                 -e SINGLE_USER_CREDENTIALS_USERNAME=admin \
                 -e SINGLE_USER_CREDENTIALS_PASSWORD=secretpassword \
                 apache/nifi:latest
               EOF
+
+  user_data_replace_on_change = true
 
 #   user_data = <<-EOF
 #               #!/bin/bash
