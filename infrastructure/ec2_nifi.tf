@@ -16,9 +16,20 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["amazon/al2023-ami-2023.4.2024*-kernel-6.1-x86_64"]
+  }
+
+  owners = ["amazon"]
+}
+
 resource "aws_instance" "web" {
 
-  ami                    = data.aws_ami.ubuntu.id
+  ami                    = data.aws_ami.amazon_linux.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.web-sg.id]
 
@@ -28,12 +39,29 @@ resource "aws_instance" "web" {
 
   user_data = <<-EOF
               #!/bin/bash
-              apt-get update
-              apt-get install -y apache2
-              sed -i -e 's/80/8080/' /etc/apache2/ports.conf
-              echo "Hello World" > /var/www/html/index.html
-              systemctl restart apache2
+              sudo yum update
+              sudo yum install docker
+              sudo usermod -a -G docker ec2-user
+              id ec2-user
+              newgrp docker
+              sudo systemctl enable docker.service
+              sudo systemctl start docker.service
+              docker run --name nifi \
+                -p 8080:8443 \
+                -d \
+                -e SINGLE_USER_CREDENTIALS_USERNAME=admin \
+                -e SINGLE_USER_CREDENTIALS_PASSWORD=secretpassword \
+                apache/nifi:latest
               EOF
+
+#   user_data = <<-EOF
+#               #!/bin/bash
+#               apt-get update
+#               apt-get install -y apache2
+#               sed -i -e 's/80/8080/' /etc/apache2/ports.conf
+#               echo "Hello World" > /var/www/html/index.html
+#               systemctl restart apache2
+#               EOF
 }
 
 resource "aws_security_group" "web-sg" {
