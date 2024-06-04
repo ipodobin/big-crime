@@ -16,17 +16,6 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-data "aws_ami" "amazon_linux" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["amazon/al2023-ami-*-x86_64"]
-  }
-
-  owners = ["amazon"]
-}
-
 resource "aws_instance" "web" {
 
   ami                    = "ami-00beae93a2d981137"
