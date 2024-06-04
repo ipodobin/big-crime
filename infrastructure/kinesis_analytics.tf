@@ -24,7 +24,7 @@ resource "aws_glue_catalog_database" "big_crime_catalog" {
 
 resource "aws_kinesisanalyticsv2_application" "big_crime_flink" {
   name                   = "big-crime-flink-application"
-  runtime_environment    = "FLINK-1_15"
+  runtime_environment    = "FLINK-1_18"
   service_execution_role = "arn:aws:iam::780087431924:role/LabRole"
-  application_mode       = "INTERACTIVE"
+  application_mode       = "STREAMING"
 }
