@@ -29,7 +29,7 @@ data "aws_ami" "amazon_linux" {
 
 resource "aws_instance" "web" {
 
-  ami                    = data.aws_ami.amazon_linux.id
+  ami                    = "ami-00beae93a2d981137"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.web-sg.id]
 
