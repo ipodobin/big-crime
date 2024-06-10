@@ -1,4 +1,0 @@
-aws sts get-caller-identity|jq -r ".Account"
-
-aws kinesisanalyticsv2 create-application --cli-input-json file://./flink_studio_notebooks/create_studio_notebook.json
-aws kinesisanalyticsv2 start-application --application-arn arn:aws:kinesisanalytics:us-east-1:780087431924:application/MyNotebook\

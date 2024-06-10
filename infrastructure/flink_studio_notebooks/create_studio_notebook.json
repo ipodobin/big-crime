@@ -1,8 +1,8 @@
 {
-  "ApplicationName": "MyNotebook",
+  "ApplicationName": "$BIG_CRIME_KINESIS_ANALYTICAL_APPLICATION_NAME",
   "RuntimeEnvironment": "ZEPPELIN-FLINK-3_0",
   "ApplicationMode": "INTERACTIVE",
-  "ServiceExecutionRole": "arn:aws:iam::780087431924:role/LabRole",
+  "ServiceExecutionRole": "arn:aws:iam::$AWS_ACCOUNT_ID:role/LabRole",
   "ApplicationConfiguration": {
     "ApplicationSnapshotConfiguration": {
       "SnapshotsEnabled": false
@@ -10,7 +10,7 @@
     "ZeppelinApplicationConfiguration": {
       "CatalogConfiguration": {
         "GlueDataCatalogConfiguration": {
-          "DatabaseARN": "arn:aws:glue:us-east-1:780087431924:database/big-crime-stream-db"
+          "DatabaseARN": "arn:aws:glue:us-east-1:$AWS_ACCOUNT_ID:database/$BIG_CRIME_GLUE_DB_NAME"
         }
       }
     }
