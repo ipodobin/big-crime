@@ -36,7 +36,7 @@ resource "aws_instance" "web" {
               sudo systemctl enable docker.service
               sudo systemctl start docker.service
               docker run --name nifi \
-                -p 8080:8080 \
+                -p 8443:8443 \
                 -d \
                 -e SINGLE_USER_CREDENTIALS_USERNAME=admin \
                 -e SINGLE_USER_CREDENTIALS_PASSWORD=secretpassword \
@@ -58,8 +58,8 @@ resource "aws_instance" "web" {
 resource "aws_security_group" "web-sg" {
   name = "${random_pet.sg.id}-sg"
   ingress {
-    from_port   = 8080
-    to_port     = 8080
+    from_port   = 8443
+    to_port     = 8443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -73,5 +73,5 @@ resource "aws_security_group" "web-sg" {
 }
 
 output "web-address" {
-  value = "${aws_instance.web.public_dns}:8080"
+  value = "${aws_instance.web.public_ip}:8443/nifi"
 }
