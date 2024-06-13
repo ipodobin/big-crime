@@ -14,7 +14,7 @@ spark = glueContext.spark_session
 job = Job(glueContext)
 job.init(args["JOB_NAME"], args)
 
-dataFrame = spark.read.json("s3://780087431924-landing-zone/2024-06-11/") \
+dataFrame = spark.read.json("s3://$AWS_ACCOUNT_ID-$LANDING_ZONE_BUCKET_NAME/2024-06-13/") \
     .withColumn("datetime", col("date")) \
     .withColumn("date", to_date(col("datetime")))
 
@@ -25,7 +25,7 @@ glueContext.write_dynamic_frame.from_options(
     frame=dynamicFrame,
     connection_type='s3',
     connection_options={
-        'path': "s3://780087431924-formatted-data/output", "partitionKeys": ["date"]
+        'path': "s3://$AWS_ACCOUNT_ID-$FORMATTED_DATA_BUCKET_NAME/output", "partitionKeys": ["date"]
     },
     format='parquet',
 )

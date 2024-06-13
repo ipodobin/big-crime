@@ -21,9 +21,9 @@ aws kinesis create-stream \
 aws glue create-database --database-input "{\"Name\":\"$BIG_CRIME_GLUE_DB_NAME\"}"
 
 # create and start kinesis analysis studio notebook
-envsubst <./flink_studio_notebooks/create_studio_notebook.json >resource.json
+envsubst <./create_studio_notebook.json >resource.json
 aws kinesisanalyticsv2 create-application --cli-input-json file://./resource.json
-aws kinesisanalyticsv2 start-application --application-name $BIG_CRIME_KINESIS_ANALYTICAL_APPLICATION_NAME
+#aws kinesisanalyticsv2 start-application --application-name $BIG_CRIME_KINESIS_ANALYTICAL_APPLICATION_NAME
 rm resource.json
 envsubst <./zeppelin_notebook_template.ipynb >zeppelin_notebook.ipynb
 

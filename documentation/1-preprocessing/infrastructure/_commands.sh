@@ -5,18 +5,24 @@ export AWS_ACCOUNT_ID
 echo $AWS_ACCOUNT_ID
 export BIG_CRIME_GLUE_DB_NAME="big-crime-db"
 
-aws s3api create-bucket --bucket $AWS_ACCOUNT_ID-landing-zone --region us-east-1
-aws s3api create-bucket --bucket $AWS_ACCOUNT_ID-formatted-data --region us-east-1
+export LANDING_ZONE_BUCKET_NAME="landing-zone"
+aws s3api create-bucket --bucket $AWS_ACCOUNT_ID-$LANDING_ZONE_BUCKET_NAME --region us-east-1
+envsubst <./landing_zone_bucket_policy.json >resource.json
+aws s3api put-bucket-policy --bucket $AWS_ACCOUNT_ID-$LANDING_ZONE_BUCKET_NAME --policy file://./resource.json
+
+export FORMATTED_DATA_BUCKET_NAME="formatted-data"
+aws s3api create-bucket --bucket $AWS_ACCOUNT_ID-$FORMATTED_DATA_BUCKET_NAME --region us-east-1
 
 aws s3api create-bucket --bucket $AWS_ACCOUNT_ID-app --region us-east-1
-aws s3 cp 01_to_parquet_conversion.py s3://$AWS_ACCOUNT_ID-app/glue/scripts/
+envsubst <./01_to_parquet_conversion.py >script.py
+aws s3 cp script.py s3://$AWS_ACCOUNT_ID-app/glue/scripts/
 aws glue create-job \
     --name big-crime-preprocessing \
     --job-mode "SCRIPT" \
     --role "arn:aws:iam::$AWS_ACCOUNT_ID:role/LabRole" \
     --command "{
         \"Name\": \"glueetl\",
-        \"ScriptLocation\": \"s3://$AWS_ACCOUNT_ID-app/glue/scripts/01_to_parquet_conversion.py\",
+        \"ScriptLocation\": \"s3://$AWS_ACCOUNT_ID-app/glue/scripts/script.py\",
         \"PythonVersion\": \"3\"
     }" \
     --region us-east-1 \

@@ -1,0 +1,44 @@
+{
+  "ApplicationName": "$BIG_CRIME_KINESIS_ANALYTICAL_APPLICATION_NAME",
+  "RuntimeEnvironment": "ZEPPELIN-FLINK-3_0",
+  "ApplicationMode": "INTERACTIVE",
+  "ServiceExecutionRole": "arn:aws:iam::$AWS_ACCOUNT_ID:role/LabRole",
+  "ApplicationConfiguration": {
+    "ApplicationSnapshotConfiguration": {
+      "SnapshotsEnabled": false
+    },
+    "ZeppelinApplicationConfiguration": {
+      "CatalogConfiguration": {
+        "GlueDataCatalogConfiguration": {
+          "DatabaseARN": "arn:aws:glue:us-east-1:$AWS_ACCOUNT_ID:database/$BIG_CRIME_GLUE_DB_NAME"
+        }
+      },
+      "CustomArtifactsConfiguration": [
+        {
+          "ArtifactType": "DEPENDENCY_JAR",
+          "MavenReference": {
+            "GroupId": "org.apache.flink",
+            "ArtifactId": "flink-sql-connector-kinesis",
+            "Version": "1.15.4"
+          }
+        },
+        {
+          "ArtifactType": "DEPENDENCY_JAR",
+          "MavenReference": {
+            "GroupId": "org.apache.flink",
+            "ArtifactId": "flink-connector-kafka",
+            "Version": "1.15.4"
+          }
+        },
+        {
+          "ArtifactType": "DEPENDENCY_JAR",
+          "MavenReference": {
+            "GroupId": "software.amazon.msk",
+            "ArtifactId": "aws-msk-iam-auth",
+            "Version": "1.1.6"
+          }
+        }
+      ]
+    }
+  }
+}
