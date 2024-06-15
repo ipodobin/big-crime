@@ -2,7 +2,7 @@
 <template encoding-version="1.3">
     <description></description>
     <groupId>018f1000-6b22-17dd-0308-3f9c3fd23210</groupId>
-    <name>big_crime_save_raw_data_v6</name>
+    <name>big_crime_save_raw_data_v7</name>
     <snippet>
         <connections>
             <id>01e8fd04-2621-36b6-0000-000000000000</id>
@@ -356,31 +356,6 @@
             <zIndex>0</zIndex>
         </connections>
         <connections>
-            <id>5d00e128-1596-3ebb-0000-000000000000</id>
-            <parentGroupId>fccf9047-0bad-3129-0000-000000000000</parentGroupId>
-            <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
-            <backPressureObjectThreshold>10000000</backPressureObjectThreshold>
-            <destination>
-                <groupId>fccf9047-0bad-3129-0000-000000000000</groupId>
-                <id>cf5c8f94-2ea2-3299-0000-000000000000</id>
-                <type>PROCESSOR</type>
-            </destination>
-            <flowFileExpiration>0 sec</flowFileExpiration>
-            <labelIndex>1</labelIndex>
-            <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
-            <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
-            <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
-            <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
-            <name></name>
-            <selectedRelationships>success</selectedRelationships>
-            <source>
-                <groupId>fccf9047-0bad-3129-0000-000000000000</groupId>
-                <id>cfd553b6-5a6a-372a-0000-000000000000</id>
-                <type>PROCESSOR</type>
-            </source>
-            <zIndex>0</zIndex>
-        </connections>
-        <connections>
             <id>69cec82d-5075-360f-0000-000000000000</id>
             <parentGroupId>fccf9047-0bad-3129-0000-000000000000</parentGroupId>
             <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
@@ -538,6 +513,31 @@
             <zIndex>0</zIndex>
         </connections>
         <connections>
+            <id>8c6768d6-b632-3730-0000-000000000000</id>
+            <parentGroupId>fccf9047-0bad-3129-0000-000000000000</parentGroupId>
+            <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>1000000</backPressureObjectThreshold>
+            <destination>
+                <groupId>fccf9047-0bad-3129-0000-000000000000</groupId>
+                <id>cf5c8f94-2ea2-3299-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+            <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+            <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+            <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+            <name></name>
+            <selectedRelationships>success</selectedRelationships>
+            <source>
+                <groupId>fccf9047-0bad-3129-0000-000000000000</groupId>
+                <id>9924ef87-f1d1-38ff-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <connections>
             <id>99f4b589-81c0-3739-0000-000000000000</id>
             <parentGroupId>fccf9047-0bad-3129-0000-000000000000</parentGroupId>
             <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
@@ -583,6 +583,31 @@
             <source>
                 <groupId>fccf9047-0bad-3129-0000-000000000000</groupId>
                 <id>93d7c680-34e2-39ac-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <connections>
+            <id>a50df46e-219f-3716-0000-000000000000</id>
+            <parentGroupId>fccf9047-0bad-3129-0000-000000000000</parentGroupId>
+            <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>100000</backPressureObjectThreshold>
+            <destination>
+                <groupId>fccf9047-0bad-3129-0000-000000000000</groupId>
+                <id>9924ef87-f1d1-38ff-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+            <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+            <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+            <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+            <name></name>
+            <selectedRelationships>success</selectedRelationships>
+            <source>
+                <groupId>fccf9047-0bad-3129-0000-000000000000</groupId>
+                <id>cfd553b6-5a6a-372a-0000-000000000000</id>
                 <type>PROCESSOR</type>
             </source>
             <zIndex>0</zIndex>
@@ -1104,7 +1129,7 @@
                     <versionedComponentId>b42cb9bf-651e-32d0-b5d2-d15af363f421</versionedComponentId>
                     <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
                     <name>response</name>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <type>INPUT_PORT</type>
                 </inputPorts>
                 <outputPorts>
@@ -1117,7 +1142,7 @@
                     <versionedComponentId>3e918d38-3ed9-3d1b-a923-f88495dae6d3</versionedComponentId>
                     <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
                     <name>finished</name>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <type>OUTPUT_PORT</type>
                 </outputPorts>
                 <outputPorts>
@@ -1130,7 +1155,7 @@
                     <versionedComponentId>c172917d-a757-3aaa-911a-df9eae3c2283</versionedComponentId>
                     <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
                     <name>next</name>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <type>OUTPUT_PORT</type>
                 </outputPorts>
                 <processors>
@@ -1212,7 +1237,7 @@
                         <name>unmatched</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.RouteOnAttribute</type>
                 </processors>
@@ -1302,7 +1327,7 @@
                         <name>success</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.FilterAttribute</type>
                 </processors>
@@ -1419,7 +1444,7 @@
                         <name>unmatched</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.EvaluateJsonPath</type>
                 </processors>
@@ -1490,7 +1515,7 @@
                         <name>success</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.LogMessage</type>
                 </processors>
@@ -1581,7 +1606,7 @@
                         <name>success</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.attributes.UpdateAttribute</type>
                 </processors>
@@ -1672,7 +1697,7 @@
                         <name>success</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.attributes.UpdateAttribute</type>
                 </processors>
@@ -1829,7 +1854,7 @@
                         <name>success</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.ReplaceText</type>
                 </processors>
@@ -1900,7 +1925,7 @@
                         <name>success</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.LogMessage</type>
                 </processors>
@@ -2242,7 +2267,7 @@
                     <versionedComponentId>3466c3b0-0b60-345e-983c-fd57e40b3b6b</versionedComponentId>
                     <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
                     <name>response</name>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <type>INPUT_PORT</type>
                 </inputPorts>
                 <outputPorts>
@@ -2255,7 +2280,7 @@
                     <versionedComponentId>c4f28b22-6d1c-3bf4-b314-78b6adf0df63</versionedComponentId>
                     <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
                     <name>finished</name>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <type>OUTPUT_PORT</type>
                 </outputPorts>
                 <outputPorts>
@@ -2268,7 +2293,7 @@
                     <versionedComponentId>c7be60bb-170b-3c18-80fc-47788f109696</versionedComponentId>
                     <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
                     <name>next</name>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <type>OUTPUT_PORT</type>
                 </outputPorts>
                 <processors>
@@ -2350,7 +2375,7 @@
                         <name>unmatched</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.RouteOnAttribute</type>
                 </processors>
@@ -2507,7 +2532,7 @@
                         <name>success</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.ReplaceText</type>
                 </processors>
@@ -2597,7 +2622,7 @@
                         <name>success</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.FilterAttribute</type>
                 </processors>
@@ -2714,7 +2739,7 @@
                         <name>unmatched</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.EvaluateJsonPath</type>
                 </processors>
@@ -2805,7 +2830,7 @@
                         <name>success</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.attributes.UpdateAttribute</type>
                 </processors>
@@ -2896,7 +2921,7 @@
                         <name>success</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.attributes.UpdateAttribute</type>
                 </processors>
@@ -2967,7 +2992,7 @@
                         <name>success</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.LogMessage</type>
                 </processors>
@@ -3038,7 +3063,7 @@
                         <name>success</name>
                         <retry>false</retry>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.LogMessage</type>
                 </processors>
@@ -3130,7 +3155,7 @@
                 <name>split</name>
                 <retry>false</retry>
             </relationships>
-            <state>RUNNING</state>
+            <state>STOPPED</state>
             <style/>
             <type>org.apache.nifi.processors.standard.SplitJson</type>
         </processors>
@@ -3387,7 +3412,7 @@
                 <name>unmatched</name>
                 <retry>false</retry>
             </relationships>
-            <state>RUNNING</state>
+            <state>STOPPED</state>
             <style/>
             <type>org.apache.nifi.processors.standard.EvaluateJsonPath</type>
         </processors>
@@ -3712,7 +3737,7 @@
                     </entry>
                     <entry>
                         <key>Remote URL</key>
-                        <value>https://data.cityofchicago.org/resource/ijzp-q8t2.json?$$$$app_token=yMG7ud7wf0svusOppJSWAJmPG&amp;$limit=${limit}&amp;$offset=${offset}&amp;$order=date&amp;$where=date&gt;'2003-01-01'</value>
+                        <value>https://data.cityofchicago.org/resource/ijzp-q8t2.json?$$$$app_token=yMG7ud7wf0svusOppJSWAJmPG&amp;$limit=${limit}&amp;$offset=${offset}&amp;$order=date</value>
                     </entry>
                     <entry>
                         <key>disable-http2</key>
@@ -3883,7 +3908,7 @@
                 <name>Retry</name>
                 <retry>false</retry>
             </relationships>
-            <state>RUNNING</state>
+            <state>STOPPED</state>
             <style/>
             <type>org.apache.nifi.processors.standard.InvokeHTTP</type>
         </processors>
@@ -4035,7 +4060,7 @@
                 <name>split</name>
                 <retry>false</retry>
             </relationships>
-            <state>RUNNING</state>
+            <state>STOPPED</state>
             <style/>
             <type>org.apache.nifi.processors.standard.SplitJson</type>
         </processors>
@@ -4630,7 +4655,7 @@
                 <name>Retry</name>
                 <retry>false</retry>
             </relationships>
-            <state>RUNNING</state>
+            <state>STOPPED</state>
             <style/>
             <type>org.apache.nifi.processors.standard.InvokeHTTP</type>
         </processors>
@@ -4700,7 +4725,7 @@
                 <name>success</name>
                 <retry>false</retry>
             </relationships>
-            <state>RUNNING</state>
+            <state>STOPPED</state>
             <style/>
             <type>org.apache.nifi.processors.standard.LogMessage</type>
         </processors>
@@ -5087,7 +5112,7 @@
                 <name>success</name>
                 <retry>false</retry>
             </relationships>
-            <state>RUNNING</state>
+            <state>STOPPED</state>
             <style/>
             <type>org.apache.nifi.processors.attributes.UpdateAttribute</type>
         </processors>
@@ -5177,9 +5202,165 @@
                 <name>success</name>
                 <retry>false</retry>
             </relationships>
-            <state>RUNNING</state>
+            <state>STOPPED</state>
             <style/>
             <type>org.apache.nifi.processors.attributes.UpdateAttribute</type>
+        </processors>
+        <processors>
+            <id>9924ef87-f1d1-38ff-0000-000000000000</id>
+            <parentGroupId>fccf9047-0bad-3129-0000-000000000000</parentGroupId>
+            <position>
+                <x>2040.0</x>
+                <y>2768.0</y>
+            </position>
+            <bundle>
+                <artifact>nifi-standard-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.26.0</version>
+            </bundle>
+            <config>
+                <backoffMechanism>PENALIZE_FLOWFILE</backoffMechanism>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <descriptors>
+                    <entry>
+                        <key>Replacement Strategy</key>
+                        <value>
+                            <name>Replacement Strategy</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Regular Expression</key>
+                        <value>
+                            <dependencies>
+<dependentValues>Regex Replace</dependentValues>
+<dependentValues>Literal Replace</dependentValues>
+<propertyName>Replacement Strategy</propertyName>
+                            </dependencies>
+                            <name>Regular Expression</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Replacement Value</key>
+                        <value>
+                            <dependencies>
+<dependentValues>Prepend</dependentValues>
+<dependentValues>Regex Replace</dependentValues>
+<dependentValues>Always Replace</dependentValues>
+<dependentValues>Append</dependentValues>
+<dependentValues>Literal Replace</dependentValues>
+<propertyName>Replacement Strategy</propertyName>
+                            </dependencies>
+                            <name>Replacement Value</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Text to Prepend</key>
+                        <value>
+                            <dependencies>
+<dependentValues>Surround</dependentValues>
+<propertyName>Replacement Strategy</propertyName>
+                            </dependencies>
+                            <name>Text to Prepend</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Text to Append</key>
+                        <value>
+                            <dependencies>
+<dependentValues>Surround</dependentValues>
+<propertyName>Replacement Strategy</propertyName>
+                            </dependencies>
+                            <name>Text to Append</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Character Set</key>
+                        <value>
+                            <name>Character Set</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Maximum Buffer Size</key>
+                        <value>
+                            <name>Maximum Buffer Size</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Evaluation Mode</key>
+                        <value>
+                            <name>Evaluation Mode</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Line-by-Line Evaluation Mode</key>
+                        <value>
+                            <name>Line-by-Line Evaluation Mode</name>
+                        </value>
+                    </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <lossTolerant>false</lossTolerant>
+                <maxBackoffPeriod>10 mins</maxBackoffPeriod>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                    <entry>
+                        <key>Replacement Strategy</key>
+                        <value>Always Replace</value>
+                    </entry>
+                    <entry>
+                        <key>Regular Expression</key>
+                        <value>(?s)(^.*$)</value>
+                    </entry>
+                    <entry>
+                        <key>Replacement Value</key>
+                        <value></value>
+                    </entry>
+                    <entry>
+                        <key>Text to Prepend</key>
+                    </entry>
+                    <entry>
+                        <key>Text to Append</key>
+                    </entry>
+                    <entry>
+                        <key>Character Set</key>
+                        <value>UTF-8</value>
+                    </entry>
+                    <entry>
+                        <key>Maximum Buffer Size</key>
+                        <value>1 MB</value>
+                    </entry>
+                    <entry>
+                        <key>Evaluation Mode</key>
+                        <value>Entire text</value>
+                    </entry>
+                    <entry>
+                        <key>Line-by-Line Evaluation Mode</key>
+                        <value>All</value>
+                    </entry>
+                </properties>
+                <retryCount>10</retryCount>
+                <runDurationMillis>25</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+            </config>
+            <executionNodeRestricted>false</executionNodeRestricted>
+            <name>ReplaceText</name>
+            <relationships>
+                <autoTerminate>true</autoTerminate>
+                <name>failure</name>
+                <retry>false</retry>
+            </relationships>
+            <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>success</name>
+                <retry>false</retry>
+            </relationships>
+            <state>STOPPED</state>
+            <style/>
+            <type>org.apache.nifi.processors.standard.ReplaceText</type>
         </processors>
         <processors>
             <id>b73def64-b91e-307f-0000-000000000000</id>
@@ -5813,7 +5994,7 @@
                 <name>unmatched</name>
                 <retry>false</retry>
             </relationships>
-            <state>RUNNING</state>
+            <state>STOPPED</state>
             <style/>
             <type>org.apache.nifi.processors.standard.EvaluateJsonPath</type>
         </processors>
@@ -5821,8 +6002,8 @@
             <id>cf5c8f94-2ea2-3299-0000-000000000000</id>
             <parentGroupId>fccf9047-0bad-3129-0000-000000000000</parentGroupId>
             <position>
-                <x>1968.0</x>
-                <y>2856.0</y>
+                <x>1952.0</x>
+                <y>3088.0</y>
             </position>
             <bundle>
                 <artifact>nifi-standard-nar</artifact>
@@ -5972,7 +6153,7 @@
                 <name>success</name>
                 <retry>false</retry>
             </relationships>
-            <state>RUNNING</state>
+            <state>STOPPED</state>
             <style/>
             <type>org.apache.nifi.processors.standard.FilterAttribute</type>
         </processors>
@@ -6492,7 +6673,7 @@
                 <name>success</name>
                 <retry>false</retry>
             </relationships>
-            <state>RUNNING</state>
+            <state>STOPPED</state>
             <style/>
             <type>org.apache.nifi.processors.aws.s3.PutS3Object</type>
         </processors>
@@ -6998,10 +7179,10 @@
                 <name>original</name>
                 <retry>false</retry>
             </relationships>
-            <state>RUNNING</state>
+            <state>STOPPED</state>
             <style/>
             <type>org.apache.nifi.processors.standard.MergeContent</type>
         </processors>
     </snippet>
-    <timestamp>06/13/2024 14:02:26 UTC</timestamp>
+    <timestamp>06/14/2024 12:04:00 UTC</timestamp>
 </template>
