@@ -41,7 +41,7 @@ def lambda_handler(event, context):
                 if 'community_area' in record : record['community_area'] = community_areas.get(record['community_area'], None)
                 records.append({
                     'Data': json.dumps(record),
-                    'PartitionKey': record['block']
+                    'PartitionKey': record['community_area']
                 })
             kinesis_client.put_records(
                 StreamName=stream_name, Records=records
